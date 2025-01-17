@@ -162,6 +162,50 @@ This project is a User Management System that allows users to register, login, r
     ]
   }
   ```
+  
+### 7. Get All Referrals
+
+**Endpoint**: `/referrals`  
+**Method**: `GET`  
+**Authorization**: Bearer Token (JWT)
+
+### Request
+
+The request needs to include a valid Bearer token for authorization.
+
+### Response
+
+```json
+{
+    "referrals": [
+        {
+            "_id": "678a62edb8b803057c4ee271",
+            "referrer": {
+                "_id": "678a6006b8b803057c4ee222",
+                "name": "admin",
+                "email": "admin@gmail.com",
+                "jobTitle": "developer",
+                "role": "admin",
+                "resumeUrl": "https://drive.google.com/file/d/1oaEZkF0awp9gSF1LlYPn4eU8AfomWXTb/view?usp=drive_link",
+                "created_at": "2025-01-17T13:49:58.025Z",
+                "updated_at": "2025-01-17T13:49:58.025Z"
+            },
+            "referred": {
+                "_id": "678a6070b8b803057c4ee225",
+                "name": "user1",
+                "email": "user2@gmail.com",
+                "jobTitle": "developer",
+                "role": "emp",
+                "resumeUrl": "https://drive.google.com/file/d/1oaEZkF0awp9gSF1LlYPn4eU8AfomWXTb/view?usp=drive_link",
+                "created_at": "2025-01-17T13:51:44.031Z",
+                "updated_at": "2025-01-17T13:51:44.031Z"
+            },
+            "status": "accepted",
+            "createdAt": "2025-01-17T14:02:21.175Z"
+        },
+        ...
+    ]
+}
 
 ## Technologies Used
 
