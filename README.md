@@ -1,254 +1,223 @@
-Here's a more visually appealing version of your `README.md` file with improved formatting, styling, and sections for better readability and engagement:
+Here’s the updated API documentation for the specified endpoints:
 
 ```markdown
-# 🚀 **Worko API Documentation**
+# 🌐 **Admin API Documentation**
 
-Welcome to the **Worko API Documentation**! This guide provides everything you need to know about the endpoints, authentication, and testing for the Worko API.
+## 🎥 **Demo Video**
+
+Watch the full demo of the API in action:
+
+<video width="100%" controls>
+  <source src="https://www.youtube.com/watch?v=W3bwF-bFJLM" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+## 🌍 **Live Website**
+
+🚀 You can access the live website here:  
+[**Worko**](https://shik-worko.netlify.app/)  
+👨‍💻 Explore the platform now! 👨‍💻
 
 ---
 
-## 🌐 **Base URL**
-Replace `{BASE_URL}` with your API's base URL, such as:
+## **API Endpoints** 🚀
 
-- Local: `http://localhost:3000`
-- Production: `https://your-deployed-api.com`
+### **1. POST /auth/register**  
+🔐 **Register a New User**  
+Registers a new user and provides a response with user details.
 
----
-
-## 🔑 **Authentication**
-Most endpoints require a valid JWT token. Include it in the `Authorization` header as follows:
-
-```plaintext
-Authorization: Bearer {YOUR_JWT_TOKEN}
+#### **Request Body:**
+```json
+{
+  "name": "testuser5",
+  "email": "testuser5@example.com",
+  "password": "password123",
+  "resumeUrl": "https://drive.google.com/file/d/1oaEZkF0awp9gSF1LlYPn4eU8AfomWXTb/view"
+}
 ```
 
----
-
-## 📋 **Endpoints**
-
-### **1. Authentication**
-
-#### 🔐 User Registration
-- **Endpoint**: `POST {BASE_URL}/auth/register`
-- **Request Body**:
-  ```json
-  {
-    "name": "John Doe",
-    "email": "john@example.com",
-    "password": "securepassword123",
-    "jobTitle": "Software Engineer",
-    "resumeUrl": "https://example.com/resume.pdf"
-  }
-  ```
-- **Response**:
+#### **Response:**
+- **200 OK**: 
   ```json
   {
     "message": "User registered successfully",
-    "userId": "user_id_here"
+    "userId": "678a6c03acfa0dee7d5d8fa2"
   }
   ```
 
-#### 🔓 User Login
-- **Endpoint**: `POST {BASE_URL}/auth/login`
-- **Request Body**:
-  ```json
-  {
-    "email": "john@example.com",
-    "password": "securepassword123"
-  }
-  ```
-- **Response**:
+---
+
+### **2. POST /auth/login**  
+🔑 **Login to Your Account**  
+Logs in a user and returns a JWT token for authentication.
+
+#### **Request Body:**
+```json
+{
+  "email": "admin@gmail.com",
+  "password": "12345678"
+}
+```
+
+#### **Response:**
+- **200 OK**: 
   ```json
   {
     "message": "Login successful",
-    "token": "your_jwt_token_here",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzhhNjAwNmI4YjgwMzA1N2M0ZWUyMjIiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNzEyNTQ2OCwiZXhwIjoxNzM3MjExODY4fQ.Pk1edmREIbwHQbKCWqr31D8wtGXIM5P28Ix7jXm0GLc",
     "user": {
-      "id": "user_id_here",
-      "email": "john@example.com",
-      "name": "John Doe",
-      "jobTitle": "Software Engineer"
+      "id": "678a6006b8b803057c4ee222",
+      "email": "admin@gmail.com",
+      "username": "admin",
+      "jobTitle": "developer"
     }
   }
   ```
 
-#### 🛡️ Get Current User Data
-- **Endpoint**: `GET {BASE_URL}/auth/me`
-- **Headers**: Authorization required
-- **Response**:
-  ```json
-  {
-    "id": "user_id_here",
-    "email": "john@example.com",
-    "name": "John Doe",
-    "jobTitle": "Software Engineer",
-    "role": "emp",
-    "resumeUrl": "https://example.com/resume.pdf"
-  }
-  ```
-
 ---
 
-### **2. User Management**
+### **3. GET /auth/me**  
+👤 **Get User Data**  
+Fetches the profile details of the currently logged-in user.
 
-#### 👥 Get All Users
-- **Endpoint**: `GET {BASE_URL}/api/users`
-- **Headers**: Authorization required (Admin/Employee)
-- **Response**:
-  ```json
-  [
-    {
-      "id": "user_id_1",
-      "name": "John Doe",
-      "email": "john@example.com",
-      "jobTitle": "Software Engineer",
-      "role": "emp"
-    },
-    {
-      "id": "user_id_2",
-      "name": "Jane Smith",
-      "email": "jane@example.com",
-      "jobTitle": "Product Manager",
-      "role": "admin"
-    }
-  ]
-  ```
-
----
-
-### **3. Referral Management**
-
-#### 🤝 Refer a User
-- **Endpoint**: `POST {BASE_URL}/api/refer`
-- **Headers**: Authorization required
-- **Request Body**:
-  ```json
-  {
-    "name": "Alice Johnson",
-    "email": "alice@example.com",
-    "jobTitle": "UX Designer",
-    "resume": "base64_encoded_resume_file"
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "id": "referral_id_here",
-    "name": "Alice Johnson",
-    "email": "alice@example.com",
-    "jobTitle": "UX Designer",
-    "status": "pending",
-    "referredBy": "user_id_of_referrer",
-    "createdAt": "2023-06-01T12:00:00Z"
-  }
-  ```
-
-#### 🗑️ Delete a Referral
-- **Endpoint**: `DELETE {BASE_URL}/api/referrals/{referralId}`
-- **Headers**: Authorization required
-- **Response**:
-  ```json
-  {
-    "message": "Referral deleted successfully"
-  }
-  ```
-
----
-
-### **4. Admin Endpoints**
-
-#### 📜 Get All Referrals
-- **Endpoint**: `GET {BASE_URL}/api/admin/referrals`
-- **Headers**: Authorization required (Admin only)
-- **Response**:
-  ```json
-  [
-    {
-      "id": "referral_id_1",
-      "name": "Alice Johnson",
-      "email": "alice@example.com",
-      "jobTitle": "UX Designer",
-      "status": "pending",
-      "referredBy": "user_id_1",
-      "createdAt": "2023-06-01T12:00:00Z"
-    },
-    {
-      "id": "referral_id_2",
-      "name": "Bob Williams",
-      "email": "bob@example.com",
-      "jobTitle": "Data Scientist",
-      "status": "accepted",
-      "referredBy": "user_id_2",
-      "createdAt": "2023-05-28T10:00:00Z"
-    }
-  ]
-  ```
-
-#### 🛠️ Update User Role
-- **Endpoint**: `PUT {BASE_URL}/api/admin/user-role`
-- **Request Body**:
-  ```json
-  {
-    "userId": "user_id_here",
-    "newRole": "emp"
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "id": "user_id_here",
-    "name": "John Doe",
-    "email": "john@example.com",
-    "role": "emp"
-  }
-  ```
-
----
-
-## 🛠️ **Error Responses**
-All endpoints can return the following errors:
-
-- **400**: Bad Request (Invalid input)
-- **401**: Unauthorized (Invalid or missing token)
-- **403**: Forbidden (No access permission)
-- **404**: Not Found (Resource not found)
-- **500**: Internal Server Error (Unexpected error)
-
----
-
-## 🧪 **Testing with Postman**
-
-1. **Set Up Environment**:
-   - Add a variable `BASE_URL` with your API base URL.
-2. **Create Requests**:
-   - Add each endpoint as a request.
-3. **Authorization**:
-   - Include the Authorization header for protected routes.
-4. **Send Requests**:
-   - Test various endpoints with valid and invalid data.
-
----
-
-## 🎉 **Contributing**
-
-We welcome contributions to improve the API. Feel free to submit pull requests or report issues!
-
----
-
-## 📞 **Contact**
-
-For support or inquiries, email us at [support@worko.com](mailto:support@worko.com).
-
----
-
-Make your Worko experience seamless! 🚀
+#### **Response:**
+```json
+{
+  "id": "67890f58115df703ae589e1b",
+  "name": "testuser3",
+  "email": "testuser3@example.com",
+  "role": "admin",
+  "jobTitle": "developer"
+}
 ```
 
-### Key Enhancements:
-1. **Emojis**: Added emojis for sections to make the document visually engaging.
-2. **Sections**: Structured content into clear, concise sections with headings.
-3. **Highlights**: Added code blocks for clarity in request/response examples.
-4. **Callouts**: Used bold text for important notes and endpoints.
-5. **Testing Instructions**: Detailed steps for Postman testing.
-6. **Contact & Contribution**: Added sections for community engagement.
+---
 
-Copy this content into your `README.md` file for a professional and appealing API documentation.
+### **4. POST /api/refer**  
+🔗 **Refer User**  
+Allows a user to refer another user. Requires Bearer token.
+
+#### **Request Body:**
+```json
+{
+  "referredUserId": "6788f34506dddc3be8491f8b"
+}
+```
+
+#### **Response:**
+```json
+{
+  "message": "User referred successfully",
+  "referral": {
+    "id": "678a6f39acfa0dee7d5d8fb3",
+    "referrer": "678a6006b8b803057c4ee222",
+    "referred": "678a6c03acfa0dee7d5d8fa2",
+    "status": "pending"
+  }
+}
+```
+
+---
+
+### **5. GET /api/referrals**  
+🔍 **Get Employee Referrals**  
+Fetches the list of referrals for the logged-in user.
+
+#### **Response:**
+```json
+{
+  "message": "Referrals retrieved successfully",
+  "referrals": [
+    {
+      "_id": "678926ba30600566659a115d",
+      "referrer": "67890f48115df703ae589e18",
+      "referred": {
+        "_id": "6789268730600566659a114d",
+        "name": "testuser4",
+        "email": "testuser4@example.com",
+        "jobTitle": "developer",
+        "role": "user"
+      },
+      "status": "pending",
+      "createdAt": "2025-01-16T15:33:14.590Z"
+    },
+    {
+      "_id": "6789286f925df7f51b69ea53",
+      "referrer": "67890f48115df703ae589e18",
+      "referred": {
+        "_id": "6788f34506dddc3be8491f8b",
+        "name": "testuser",
+        "email": "testuser@example.com",
+        "jobTitle": "developer",
+        "role": "emp"
+      },
+      "status": "pending",
+      "createdAt": "2025-01-16T15:40:31.654Z"
+    }
+  ]
+}
+```
+
+---
+
+### **6. GET /api/users**  
+👥 **Get All Users**  
+Fetches a list of all users in the system.
+
+#### **Response:**
+```json
+{
+  "users": [
+    {
+      "_id": "678a6006b8b803057c4ee222",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "jobTitle": "developer",
+      "role": "admin",
+      "resumeUrl": "https://drive.google.com/file/d/1oaEZkF0awp9gSF1LlYPn4eU8AfomWXTb/view?usp=drive_link",
+      "created_at": "2025-01-17T13:49:58.025Z"
+    },
+    {
+      "_id": "678a6070b8b803057c4ee225",
+      "name": "user1",
+      "email": "user2@gmail.com",
+      "jobTitle": "developer",
+      "role": "emp",
+      "resumeUrl": "https://drive.google.com/file/d/1oaEZkF0awp9gSF1LlYPn4eU8AfomWXTb/view?usp=drive_link",
+      "created_at": "2025-01-17T13:51:44.031Z"
+    },
+    {
+      "_id": "678a60b4b8b803057c4ee229",
+      "name": "user2",
+      "email": "user1@gmail.com",
+      "jobTitle": "developer",
+      "role": "emp",
+      "resumeUrl": "https://drive.google.com/file/d/1oaEZkF0awp9gSF1LlYPn4eU8AfomWXTb/view?usp=drive_link",
+      "created_at": "2025-01-17T13:52:52.933Z"
+    }
+  ]
+}
+```
+
+---
+
+## 🎥 **Demo Video**
+
+To view the API demo in action, click the link below:  
+[![Watch the video](https://img.youtube.com/vi/W3bwF-bFJLM/0.jpg)](https://www.youtube.com/watch?v=W3bwF-bFJLM)  
+🎬 **Click to Play the Demo** 🎬
+
+---
+
+## 🌍 **Live Website**
+
+🚀 Explore the live website here:  
+[**Worko**](https://shik-worko.netlify.app/)  
+👨‍💻 Start using the platform now! 👨‍💻
+
+---
+
+### **Happy coding!** 😊🚀
+```
+
+This updated version incorporates the relevant API endpoints, their request and response formats, and some extra elements like demo video links and website access for clarity and engagement. Let me know if you need further adjustments!
