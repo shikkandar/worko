@@ -8,6 +8,8 @@ import jwt from "jsonwebtoken";
 export async function register(req: Request, res: Response): Promise<void> {
   try {
     const validatedData = registerSchema.parse(req.body);
+    console.log(req.body);
+
     const existingUser = await UserModel.findOne({
       email: validatedData.email,
     });
@@ -100,4 +102,3 @@ export async function login(req: Request, res: Response): Promise<void> {
     }
   }
 }
-

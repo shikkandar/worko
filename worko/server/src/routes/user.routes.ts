@@ -21,7 +21,7 @@ import {
 
 const router = express.Router();
 // Admin routes
-router.get("/admin/users", auth, adminAuth, getAllUsers);
+router.get("/users", auth, empOrAdminAuth, getAllUsers);
 router.get("/admin/referrals", auth, adminAuth, getAllReferrals);
 router.put("/admin/user-role", auth, adminAuth, updateUserRole);
 router.put("/admin/referral-status", auth, adminAuth, updateReferralStatus);

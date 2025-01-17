@@ -21,19 +21,8 @@ export const getUserData = async (
       return;
     }
 
-    const user: User = {
-      _id: userDoc._id.toString(),
-      name: userDoc.name,
-      email: userDoc.email,
-      role: userDoc.role as User["role"],
-      jobTitle: userDoc.jobTitle as User["jobTitle"],
-    };
     res.status(200).json({
-      id: user._id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      jobTitle: user.jobTitle,
+      userDoc,
     });
   } catch (error) {
     console.error("Error fetching user data:", error);
@@ -45,18 +34,19 @@ export const getAllUser = async (
   req: AuthenticatedRequest,
   res: Response
 ): Promise<void> => {
-    try {
-      const users = await UserModel.find().lean();
-      res.status(200).json(users.map((user) => ({
+  try {
+    const users = await UserModel.find().lean();
+    res.status(200).json(
+      users.map((user) => ({
         _id: user._id.toString(),
         name: user.name,
         email: user.email,
         role: user.role as User["role"],
         jobTitle: user.jobTitle as User["jobTitle"],
-      })));
-    } catch (error) {
-      console.error("Error fetching all users:", error);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  
+      }))
+    );
+  } catch (error) {
+    console.error("Error fetching all users:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };

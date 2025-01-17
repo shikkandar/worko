@@ -10,11 +10,10 @@ const UserSchema = new mongoose.Schema({
     default: "developer",
   },
   role: { type: String, enum: ["user", "emp", "admin"], default: "user" },
-  resume: { type: String },
+  resumeUrl: { type: String },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 });
 
 const UserModel = mongoose.model("User", UserSchema);
-
 export default UserModel;
