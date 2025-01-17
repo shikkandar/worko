@@ -76,7 +76,7 @@ const UpdateStatus = () => {
 
       await updateUserRole(token, userId, newRole);
       toast.success("User role updated successfully");
-      fetchData(); // Refresh the user list
+      fetchData();
     } catch (error) {
       console.error("Error updating user role:", error);
       toast.error("Failed to update user role. Please try again.");
@@ -244,9 +244,9 @@ const UpdateStatus = () => {
                     value={user.role}
                     onChange={(e) => handleRoleChange(user._id, e.target.value)}
                     size="small">
-                    <MenuItem value="user">User</MenuItem>
-                    <MenuItem value="employee">Employee</MenuItem>
-                    <MenuItem value="admin">Admin</MenuItem>
+                    <MenuItem value="user">user</MenuItem>
+                    <MenuItem value="emp">emp</MenuItem>
+                    <MenuItem value="admin">admin</MenuItem>
                   </Select>
                 </TableCell>
               </TableRow>
