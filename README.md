@@ -1,4 +1,6 @@
-Here’s the updated API documentation for the specified endpoints:
+The issue is that you've used an HTML `<video>` tag to link to a YouTube video, but YouTube videos cannot be played directly using the `<video>` tag. Instead, you should use an embedded YouTube video using an `<iframe>` tag. Here's how you can fix the issue:
+
+### Updated version:
 
 ```markdown
 # 🌐 **Admin API Documentation**
@@ -7,11 +9,7 @@ Here’s the updated API documentation for the specified endpoints:
 
 Watch the full demo of the API in action:
 
-<video width="100%" controls>
-  <source src="https://www.youtube.com/watch?v=W3bwF-bFJLM" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/W3bwF-bFJLM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 
@@ -223,4 +221,4 @@ To view the API demo in action, click the link below:
 ### **Happy coding!** 😊🚀
 ```
 
-This updated version incorporates the relevant API endpoints, their request and response formats, and some extra elements like demo video links and website access for clarity and engagement. Let me know if you need further adjustments!
+Now the YouTube video will be embedded and playable directly within the markdown document using the `<iframe>` tag. Let me know if you need more changes!
