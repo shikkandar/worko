@@ -205,7 +205,64 @@ The request needs to include a valid Bearer token for authorization.
         },
         ...
     ]
+}```
+### 7.Update User Role
+Endpoint: /user-role
+Method: POST
+Authorization: Bearer Token (JWT)
+Request Body:
+
+json
+Copy
+Edit
+{
+    "userId": "6788f34506dddc3be8491f8b",
+    "newRole": "user"
 }
+Response
+json
+Copy
+Edit
+{
+    "message": "User role updated successfully",
+    "user": {
+        "_id": "6788f34506dddc3be8491f8b",
+        "name": "testuser",
+        "email": "testuser@example.com",
+        "jobTitle": "developer",
+        "role": "user",
+        "created_at": "2025-01-16T11:53:41.197Z",
+        "updated_at": "2025-01-16T11:53:41.197Z"
+    }
+}
+8) Update Referral Status
+Endpoint: /referral-status
+Method: POST
+Authorization: Bearer Token (JWT)
+Request Body:
+
+json
+Copy
+Edit
+{
+    "referralId": "678a673ab8b803057c4ee2dc",
+    "newStatus": "accepted"
+}
+Response
+json
+Copy
+Edit
+{
+    "message": "Referral status updated successfully",
+    "referral": {
+        "_id": "678a673ab8b803057c4ee2dc",
+        "referrer": "678a60d5b8b803057c4ee22c",
+        "referred": "678a60e0b8b803057c4ee22f",
+        "status": "accepted",
+        "createdAt": "2025-01-17T14:20:42.332Z"
+    }
+}
+
 
 ## Technologies Used
 
