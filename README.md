@@ -9,11 +9,8 @@
 ## 🎥 **Demo Video**
 
 Watch the full demo of the API in action:
-
-<video width="100%" controls>
-  <source src="https://www.youtube.com/watch?v=W3bwF-bFJLM" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Watch the video](https://img.youtube.com/vi/W3bwF-bFJLM/0.jpg)](https://www.youtube.com/watch?v=W3bwF-bFJLM)  
+🎬 **Click to Play the Demo** 🎬
 
 ## 🌍 **Live Website**
 
