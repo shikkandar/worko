@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://worko-uml4.onrender.com/";
+axios.defaults.baseURL = "http://localhost:8080";
 
 export async function RegiterUser(data) {
   try {
@@ -79,3 +79,75 @@ export async function getAllUsers(token) {
     throw error;
   }
 }
+
+export const updateUserRole = async (token, userId, newRole) => {
+  try {
+    const response = await axios.put(
+      "/api/admin/user-role",
+      {
+        userId: userId,
+        newRole: newRole,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.status !== 200) {
+      throw new Error("Failed to update user role");
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error("Error updating user role:", error);
+    throw error;
+  }
+};
+
+export const getAllReferralsAdmin = async (token) => {
+  try {
+    const response = await axios.get("/api/admin/referrals", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status !== 200) {
+      throw new Error("Failed to fetch all referrals");
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching all referrals:", error);
+    throw error;
+  }
+};
+export const updateReferralStatus = async (token, referralId, newStatus) => {
+  try {
+    const response = await axios.put(
+      "/api/admin/referral-status",
+      {
+        referralId: referralId,
+        newStatus: newStatus,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.status !== 200) {
+      throw new Error("Failed to update referral status");
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error("Error updating referral status:", error);
+    throw error;
+  }
+};

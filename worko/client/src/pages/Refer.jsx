@@ -54,19 +54,14 @@ const Refer = () => {
               Enter the email address of the user you want to refer.
             </p>
 
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-full">
-                <label
-                  htmlFor="email"
-                  className="block text-sm/6 font-medium text-gray-900">
-                  Email address
-                </label>
                 <div className="mt-2">
                   <input
                     id="email"
                     name="email"
                     type="text"
-                    placeholder="user@example.com"
+                    placeholder="user id"
                     value={referredUserId}
                     onChange={handleInputChange}
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"

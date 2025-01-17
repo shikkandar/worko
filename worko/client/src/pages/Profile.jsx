@@ -2,6 +2,7 @@ import { useMyContext } from "../context/ContextProvider";
 
 export default function Profile() {
   const { userdata } = useMyContext();
+  console.log(userdata);
 
   // Function to handle resume download
   const handleDownload = () => {
