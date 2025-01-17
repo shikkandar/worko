@@ -1,3 +1,12 @@
+### **Admin Login Credentials**  
+
+```json
+{
+  "email": "admin@gmail.com",
+  "password": "12345678",
+}
+```
+
 ## 🎥 **Demo Video**
 [![Watch the video](https://img.youtube.com/vi/W3bwF-bFJLM/0.jpg)](https://www.youtube.com/watch?v=W3bwF-bFJLM)  
 🎬 **Click to Play the Demo** 🎬
