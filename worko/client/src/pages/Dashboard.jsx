@@ -20,6 +20,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { getMe } from "../Api/api";
 import { useMyContext } from "../context/ContextProvider";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 
@@ -97,13 +98,13 @@ function Dashboard(props) {
         })()}
       </List>
       <List>
-        {["Logout"].map((text, index) => (
+        {["Logout"].map((text) => (
           <ListItem
             key={text}
             disablePadding>
             <ListItemButton onClick={handleLogout}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <LogoutIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
