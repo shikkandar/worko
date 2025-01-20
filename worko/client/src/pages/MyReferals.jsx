@@ -21,7 +21,7 @@ const MyReferrals = () => {
   const [loading, setLoading] = useState(true);
   const [referralPage, setReferralPage] = useState(1);
   const [userPage, setUserPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     fetchData();

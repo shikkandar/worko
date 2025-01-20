@@ -16,7 +16,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { getMe } from "../Api/api";
 import { useMyContext } from "../context/ContextProvider";
@@ -42,6 +42,7 @@ function Dashboard(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -56,6 +57,11 @@ function Dashboard(props) {
     if (!isClosing) {
       setMobileOpen(!mobileOpen);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
   };
   const drawer = (
     <div>
@@ -89,6 +95,20 @@ function Dashboard(props) {
             </ListItem>
           ));
         })()}
+      </List>
+      <List>
+        {["Logout"].map((text, index) => (
+          <ListItem
+            key={text}
+            disablePadding>
+            <ListItemButton onClick={handleLogout}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
       </List>
     </div>
   );
